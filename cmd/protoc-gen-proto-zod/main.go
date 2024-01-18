@@ -61,13 +61,18 @@ type (
 	}
 )
 
+func NewZodSchema(name string, zodType string, constraints []string) ZodSchema {
+	var zs ZodSchema
+	return zs.New(name, zodType, constraints)
+}
+
 func (zs *ZodSchema) ToString() string {
 	var constraints string
 	if len(zs.Constraints) > 0 {
 		constraints = fmt.Sprintf(".%v", strings.Join(zs.Constraints, "."))
 	}
 	// TODO: handle special enum case
-	return fmt.Sprintf("export const %v = z.%v%v", zs.Name, zs.ZodType, constraints)
+	return fmt.Sprintf("export const %v = z.%v%v;\n", zs.Name, zs.ZodType, constraints)
 }
 
 func (zs *ZodSchema) New(name string, zodType string, constraints []string) ZodSchema {

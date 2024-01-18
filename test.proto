@@ -14,6 +14,7 @@ enum Enum {
   ANOTHER = 2;
 }
 
+// Testing a comment of a message
 message Test {
   reserved 1000; // Here to test how this would work.
   double a = 1;
